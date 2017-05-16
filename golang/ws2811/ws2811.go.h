@@ -38,12 +38,14 @@ ws2811_t ledstring = {
 		   .count = 256,
 		   .invert = 0,
 		   .brightness = 32,
+		   .strip_type = SK6812_STRIP_RGBW,
 	   },
 	   [1] = {
 		   .gpionum = 0,
 		   .count = 0,
 		   .invert = 0,
 		   .brightness = 0,
+		   .strip_type = SK6812_STRIP_RGBW,
 	   },
    },
 };
