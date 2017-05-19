@@ -2,15 +2,16 @@ package main
 
 import (
 	"fmt"
-	"github.com/jgarff/rpi_ws281x/golang/ws2811"
+	"github.com/siggy/rpi_ws281x/golang/ws2811"
 
 	"encoding/binary"
 )
 
 const (
-	LED_COUNT = 30
-	GPIO_PIN  = 18
-	LOOPS     = 100
+	GPIO_PIN   = 18
+	LED_COUNT  = 30
+	BRIGHTNESS = 64
+	LOOPS      = 100
 )
 
 var (
@@ -27,7 +28,7 @@ var (
 )
 
 func main() {
-	err := ws2811.Init(GPIO_PIN, LED_COUNT, 64)
+	err := ws2811.Init(GPIO_PIN, LED_COUNT, BRIGHTNESS)
 	if err != nil {
 		fmt.Printf("ws2811.Init failed: %+v\n", err)
 		panic(err)

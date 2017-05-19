@@ -61,7 +61,8 @@ static char VERSION[] = "testing...";
 #define DMA                                      5
 //#define STRIP_TYPE				                 WS2811_STRIP_RGB		// WS2812/SK6812RGB integrated chip+leds
 //#define STRIP_TYPE				             WS2811_STRIP_GBR		// WS2812/SK6812RGB integrated chip+leds
-#define STRIP_TYPE				             SK6812_STRIP_RGBW		// SK6812RGBW (NOT SK6812RGB)
+//#define STRIP_TYPE				             SK6812_STRIP_RGBW		// SK6812RGBW (NOT SK6812RGB)
+#define STRIP_TYPE                     SK6812_STRIP_GRBW    // SK6812GRBW
 
 #define WIDTH                                    30
 #define HEIGHT                                   1
@@ -178,7 +179,8 @@ void matrix_bottom(void)
             dotspos[i] = 0;
         }
 
-	if (ledstring.channel[0].strip_type == SK6812_STRIP_RGBW) {
+	if ((ledstring.channel[0].strip_type == SK6812_STRIP_RGBW) ||
+    (ledstring.channel[0].strip_type == SK6812_STRIP_GRBW)) {
 		matrix[dotspos[i] + (height - 1) * width] = dotcolors_rgbw[i];
 	} else {
 		matrix[dotspos[i] + (height - 1) * width] = dotcolors[i];
@@ -261,9 +263,9 @@ void parseargs(int argc, char **argv, ws2811_t *ws2811)
 				int gpio = atoi(optarg);
 /*
 	https://www.raspberrypi.org/forums/viewtopic.php?f=91&t=105044
-	PWM0, which can be set to use GPIOs 12, 18, 40, and 52. 
+	PWM0, which can be set to use GPIOs 12, 18, 40, and 52.
 	Only 12 (pin 32) and 18 (pin 12) are available on the B+/2B
-	PWM1 which can be set to use GPIOs 13, 19, 41, 45 and 53. 
+	PWM1 which can be set to use GPIOs 13, 19, 41, 45 and 53.
 	Only 13 is available on the B+/2B, on pin 35
 */
 				switch (gpio) {
