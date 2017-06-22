@@ -90,10 +90,16 @@ ws2811_t ledstring =
         },
         [1] =
         {
-            .gpionum = 0,
-            .count = 0,
+            .gpionum = 13,
+            .count = LED_COUNT,
             .invert = 0,
-            .brightness = 0,
+            .brightness = 255,
+            .strip_type = STRIP_TYPE,
+
+            // .gpionum = 0,
+            // .count = 0,
+            // .invert = 0,
+            // .brightness = 0,
         },
     },
 };
@@ -111,6 +117,7 @@ void matrix_render(void)
         for (y = 0; y < height; y++)
         {
             ledstring.channel[0].leds[(y * width) + x] = matrix[y * width + x];
+            ledstring.channel[1].leds[(y * width) + x] = matrix[y * width + x];
         }
     }
 }
